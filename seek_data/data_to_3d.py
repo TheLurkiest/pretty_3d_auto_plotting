@@ -6,8 +6,13 @@ import urllib.request
 class RandT1(object):
 	""" has methods that do turtle stuff """
 
+#	def __init__(self, metrics):
+#		self.metrics = metrics
+#		self.results = []
+
 	def __init__(self):
-		pass
+#		pass
+		self.results = []
 
 
 
@@ -41,6 +46,7 @@ class RandT1(object):
 
 
 		def finalTrackExtract(endOfTrack1,musicTrack1,total_paragraphs_corrected):
+			res_fin = []
 			numSongsLeft=0
 			numSongsLeft=total_paragraphs_corrected
 			finalTrack1=""
@@ -82,6 +88,7 @@ class RandT1(object):
 				
 				print("HERE IS A BIG CHUNK: " + str(musicTrack1))
 				list_all_choices.append(musicTrack1[:( int(musicTrack1.find(")</a></div>")) -2)])
+				self.results.append(musicTrack1[:( int(musicTrack1.find(")</a></div>")) -2)])
 				print("All options so far: " + str(list_all_choices))
 				
 				
@@ -151,6 +158,16 @@ class RandT1(object):
 			finalArray=finalTrackExtract(endOfTrack,musicTrack, int(webpageG.count("<a href=\"d/")))
 			
 			print(str(finalArray))
+			
+			
+			#for fin_elem in finalArray:
+			#	self.results.append(fin_elem)
+				
+			res_fin = self.results
+			return res_fin
+		
+		
+				
 
 
 
