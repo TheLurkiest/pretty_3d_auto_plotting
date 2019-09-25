@@ -22,16 +22,13 @@ from seek_data.data_to_3d import RandT1
 ob1 = RandT1()
 
 
-func1 = ob1.turtlesetup()
+# func1 = ob1.turtlesetup()
 
 
 
-print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + '\n\n')
-print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + '\n\n')
-print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + '\n\n')
+#print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + '\n\n')
 
-
-print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + str(func1) +'\n\n')
+#print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + str(func1) +'\n\n')
 
 
 
@@ -49,18 +46,32 @@ fetch_name = input('Enter the name of the dataset you wish to plot onto a 3d sca
 tested_out_num = 1
 iris = 1
 
-iris = fetch_openml(name=str(fetch_name), version = 'active')
 
 id_fetch = ''
 fetch_web_search = ''
 
+
 if(fetch_name == ''):
-	id_fetch = input('Enter the ID of the dataset you want, or just hit enter again to search online for a list of dataset ID\'s you can choose from: ')
-	if(id_fetch == ''):
-		fetch_web_search = input('Enter a new term here for a list of ID\'s of datasets associated with that term you can choose from: ')
-		
+	while(id_fetch == ''):
+		id_fetch = input('Enter the ID of the dataset you want, or just hit enter again to search online for a list of dataset ID\'s you can choose from: ')
+		if(len(id_fetch) > 0):
+			if(id_fetch.isnumeric() == False):
+				print('Sorry, the data you entered does not qualify as a valid ID.')
+				id_fetch = ''
+		if(id_fetch == ''):
+			func1 = ob1.turtlesetup()
+			print( '\n\nFINAL OUTPUT LIST OF DATASET OPTIONS: ' + str(func1) +'\n\n')
+			for d_elem in func1:
+				print('ID: ' + str(d_elem).replace('/','').replace('">','  \tName: '))
+
+			
 else:
-	print('placeholder for now')
+	print('Now accessing dataset associated with your request: ' + str(fetch_name))
+	iris = fetch_openml(name=str(fetch_name), version = 'active')
+	
+if(id_fetch != ''):
+	iris = fetch_openml(data_id=int(id_fetch), version = 'active')
+	
 
 
 
