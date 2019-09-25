@@ -6,20 +6,17 @@ import urllib.request
 class RandT1(object):
 	""" has methods that do turtle stuff """
 
-#	def __init__(self, metrics):
-#		self.metrics = metrics
+#	def __init__(self, metrics1):
+#		self.metrics1 = metrics1
 #		self.results = []
 
 	def __init__(self):
-#		pass
+###		pass
 		self.results = []
 
 
 
-
-
-
-	def turtlesetup(self):
+	def turtlesetup(self, in_thing1):
 
 		def oneBookendGrab(textToCutSingle,startSign):
 			bookendSingle=textToCutSingle.find(startSign)
