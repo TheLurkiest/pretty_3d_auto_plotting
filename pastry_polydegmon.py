@@ -135,14 +135,24 @@ class RandT2(object):
 		iris_points = iris.data[:, p_features]
 				
 		points = iris_points
-		fin_out_d['fea_' + str(p_features[0]) + str(p_features[1]) + str(p_features[2]) + 'input_dataset'] = points
+		
+		#fin_out_d['fea_' + str(p_features[0]) + str(p_features[1]) + str(p_features[2]) + 'input_dataset'] = points
 		#fin_out.append(points)
 
-		hist, binedges = np.histogramdd(points, normed=False)
+		hist, binedges = np.histogramdd(iris_points, normed=False)
 
 		fig = plt.figure()
 		ax1 = fig.add_subplot(111, projection='3d')
-		ax1.plot(points[:,p_features[0]],points[:,p_features[1]],points[:,p_features[2]],'k.',alpha=0.7)
+		
+		#points2 = iris.data
+#		ax1.plot( points[:,p_features[0]], points[:,p_features[1]], points[:,p_features[2]], 'k.', alpha=0.7 )
+
+		#ax1.plot( points[ int(p_features[0] - 1) :,p_features[0]], points[ int(p_features[1] - 1):,p_features[1]], points[int(p_features[2] - 1) :,p_features[2]], 'k.', alpha=0.7 )
+
+		
+		ax1.plot(points[:,0],points[:,1],points[:,2],'k.',alpha=0.7)
+
+		# ax1.plot( points2[ int(p_features[0] - 1) :,p_features[0]], points2[ int(p_features[1] - 1):,p_features[1]], points2[int(p_features[2] - 1) :,p_features[2]], 'k.', alpha=0.7 )
 
 		#Use one less than bin edges to give rough bin location
 		X, Y = np.meshgrid(binedges[0][1:],binedges[1][:-1])
@@ -161,6 +171,9 @@ class RandT2(object):
 		ax1.set_ylim(min(points[:,1]), max(points[:,1]))
 		ax1.set_zlim(min(points[:,2]), max(points[:,2]))
 
+
+
+		#ax1.plot( points[ int(p_features[0] - 1) :,p_features[0]], points[ int(p_features[1] - 1):,p_features[1]], points[int(p_features[2] - 1) :,p_features[2]], 'k.', alpha=0.7 )
 
 
 
